@@ -30,6 +30,7 @@
         font-family: "Georgia", serif;
         line-height: 1.6;
         color: #1f2937;
+        overflow-x: hidden;
       }
 
       .gradient-bg {
@@ -120,9 +121,9 @@
           #405de6,
           #5851db,
           #833ab4,
-          #49082d,
-          #7e344d,
-          #1dbefd
+          #c13584,
+          #e1306c,
+          #fd1d1d
         );
         color: white;
         transition: all 0.3s ease;
@@ -132,19 +133,12 @@
         transform: scale(1.02);
       }
 
-      .contact-section {
-        background: linear-gradient(
-          135deg,
-          var(--emerald-900) 0%,
-          var(--primary-emerald) 100%
-        );
-      }
-
       .navbar {
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         background: rgba(255, 255, 255, 0.98);
         border-bottom: 2px solid var(--emerald-100);
+        transition: transform 0.3s ease-in-out;
       }
 
       .hero-text {
@@ -163,8 +157,14 @@
       }
 
       .main-logo {
-        height: 50px;
+        height: 40px;
         width: auto;
+      }
+
+      @media (min-width: 768px) {
+        .main-logo {
+          height: 50px;
+        }
       }
 
       .section-divider {
@@ -221,13 +221,247 @@
         font-weight: 700;
         letter-spacing: 0.5px;
       }
+
+      /* Mobile Menu Styles */
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        max-width: 320px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        z-index: 9999;
+        transition: right 0.3s ease-in-out;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .mobile-menu.active {
+        right: 0;
+      }
+
+      .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9998;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .mobile-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .hamburger {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 4px;
+        transition: all 0.3s ease;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: #374151;
+        margin: 3px 0;
+        transition: all 0.3s ease;
+        transform-origin: center;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+
+      /* Responsive Floating Buttons */
+      .floating-buttons {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      @media (max-width: 640px) {
+        .floating-buttons {
+          bottom: 15px;
+          right: 15px;
+          gap: 8px;
+        }
+      }
+
+      .floating-btn {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+        animation: floating 4s ease-in-out infinite;
+      }
+
+      @media (max-width: 640px) {
+        .floating-btn {
+          width: 48px;
+          height: 48px;
+        }
+      }
+
+      /* Mobile Responsiveness */
+      @media (max-width: 640px) {
+        .hero-section {
+          padding-top: 80px;
+          min-height: 100vh;
+        }
+        
+        .hero-title {
+          font-size: 2.5rem;
+          line-height: 1.1;
+        }
+        
+        .section-padding {
+          padding-top: 4rem;
+          padding-bottom: 4rem;
+        }
+        
+        .card-padding {
+          padding: 1.5rem;
+        }
+      }
+
+      @media (min-width: 641px) and (max-width: 1024px) {
+        .hero-title {
+          font-size: 3.5rem;
+        }
+        
+        .hero-section {
+          padding-top: 100px;
+        }
+      }
+
+      @media (min-width: 1025px) {
+        .hero-section {
+          padding-top: 0;
+        }
+      }
+
+      /* Grid Responsiveness */
+      .services-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      @media (min-width: 768px) {
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .services-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .logo-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      @media (min-width: 640px) {
+        .logo-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .logo-grid {
+          grid-template-columns: repeat(6, 1fr);
+          gap: 3rem;
+        }
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      @media (min-width: 768px) {
+        .about-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .about-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      @media (min-width: 1024px) {
+        .contact-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 4rem;
+        }
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      @media (min-width: 768px) {
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .footer-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
     </style>
   </head>
   <body>
+    <!-- Scroll Indicator -->
     <div class="scroll-indicator" id="scrollIndicator"></div>
 
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
     <!-- Navigation -->
-    <nav class="navbar fixed w-full top-0 z-50 px-6 py-4">
+    <nav class="navbar fixed w-full top-0 z-50 px-4 md:px-6 py-4">
       <div class="container mx-auto flex justify-between items-center">
         <div class="flex items-center">
           <img
@@ -236,7 +470,9 @@
             class="main-logo"
           />
         </div>
-        <div class="hidden md:flex space-x-8">
+        
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex space-x-8">
           <a
             href="#inicio"
             class="text-gray-700 hover:text-emerald-600 transition duration-300 text-formal"
@@ -263,89 +499,111 @@
             >Contacto</a
           >
         </div>
-        <div class="md:hidden">
-          <button
-            id="mobileMenuBtn"
-            class="text-gray-700 hover:text-emerald-600"
-            aria-label="Abrir menú de navegación"
-            title="Abrir menú de navegación"
-          >
-            <i class="fas fa-bars text-xl"></i>
-          </button>
+
+        <!-- Mobile Menu Button -->
+        <div class="lg:hidden">
+          <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
       </div>
-      <!-- Mobile Menu -->
-      <div
-        id="mobileMenu"
-        class="hidden md:hidden mt-4 bg-white rounded-lg shadow-lg p-4"
-      >
-        <a
-          href="#inicio"
-          class="block py-3 text-gray-700 hover:text-emerald-600 text-formal"
-          >Inicio</a
-        >
-        <a
-          href="#servicios"
-          class="block py-3 text-gray-700 hover:text-emerald-600 text-formal"
-          >Servicios</a
-        >
-        <a
-          href="#empresas"
-          class="block py-3 text-gray-700 hover:text-emerald-600 text-formal"
-          >Aseguradoras</a
-        >
-        <a
-          href="#nosotros"
-          class="block py-3 text-gray-700 hover:text-emerald-600 text-formal"
-          >Nosotros</a
-        >
-        <a
-          href="#contacto"
-          class="block py-3 text-gray-700 hover:text-emerald-600 text-formal"
-          >Contacto</a
-        >
-      </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="p-6 pt-20">
+        <div class="flex flex-col space-y-6">
+          <a
+            href="#inicio"
+            class="text-xl text-gray-700 hover:text-emerald-600 transition duration-300 text-formal mobile-menu-link"
+            >Inicio</a
+          >
+          <a
+            href="#servicios"
+            class="text-xl text-gray-700 hover:text-emerald-600 transition duration-300 text-formal mobile-menu-link"
+            >Servicios</a
+          >
+          <a
+            href="#empresas"
+            class="text-xl text-gray-700 hover:text-emerald-600 transition duration-300 text-formal mobile-menu-link"
+            >Aseguradoras</a
+          >
+          <a
+            href="#nosotros"
+            class="text-xl text-gray-700 hover:text-emerald-600 transition duration-300 text-formal mobile-menu-link"
+            >Nosotros</a
+          >
+          <a
+            href="#contacto"
+            class="text-xl text-gray-700 hover:text-emerald-600 transition duration-300 text-formal mobile-menu-link"
+            >Contacto</a
+          >
+          
+          <!-- Mobile Contact Buttons -->
+          <div class="mt-8 space-y-4">
+            <button
+              class="w-full whatsapp-btn px-6 py-3 rounded-lg font-semibold text-formal flex items-center justify-center"
+              onclick="openWhatsApp('consulta general')"
+            >
+              <i class="fab fa-whatsapp mr-3 text-lg"></i>
+              WhatsApp
+            </button>
+            <button
+              class="w-full instagram-btn px-6 py-3 rounded-lg font-semibold text-formal flex items-center justify-center"
+              onclick="openInstagram()"
+            >
+              <i class="fab fa-instagram mr-3 text-lg"></i>
+              Instagram
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Hero Section -->
     <section
       id="inicio"
-      class="gradient-bg min-h-screen flex items-center relative overflow-hidden"
+      class="gradient-bg hero-section min-h-screen flex items-center relative overflow-hidden"
     >
-      <div class="container mx-auto px-6 z-10">
+      <div class="container mx-auto px-4 md:px-6 z-10">
         <div class="flex flex-col lg:flex-row items-center">
-          <div class="lg:w-1/2 text-white mb-12 lg:mb-0">
+          <div class="lg:w-1/2 text-white mb-8 lg:mb-0 text-center lg:text-left">
             <h1
-              class="text-5xl lg:text-6xl title-formal mb-8 hero-text fade-in"
+              class="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl title-formal mb-6 md:mb-8 hero-text fade-in"
             >
               Protección Integral para tu
               <span class="text-emerald-300">Tranquilidad</span>
             </h1>
-            <p class="text-xl mb-8 fade-in text-formal leading-relaxed">
+            <p class="text-lg md:text-xl mb-6 md:mb-8 fade-in text-formal leading-relaxed">
               Con más de dos décadas de experiencia en el sector asegurador,
               brindamos soluciones integrales de seguros y gestoría para
               particulares y empresas. Nuestro compromiso es acompañarte en cada
               momento importante de tu vida.
             </p>
-            <div class="flex flex-col sm:flex-row gap-6 fade-in">
+            <div class="flex flex-col sm:flex-row gap-4 md:gap-6 fade-in">
               <button
-                class="formal-button text-white px-10 py-4 rounded-lg font-semibold transition duration-300 text-formal"
+                class="formal-button text-white px-6 md:px-10 py-3 md:py-4 rounded-lg font-semibold transition duration-300 text-formal"
+                onclick="openWhatsApp('solicitar cotización')"
               >
-                <i class="fas fa-calculator mr-3"></i>Solicitar Cotización
+                <i class="fas fa-calculator mr-2 md:mr-3"></i>Solicitar Cotización
               </button>
               <button
-                class="formal-button-outline text-white px-10 py-4 rounded-lg font-semibold transition duration-300 text-formal"
+                class="formal-button-outline text-white px-6 md:px-10 py-3 md:py-4 rounded-lg font-semibold transition duration-300 text-formal"
+                onclick="document.getElementById('nosotros').scrollIntoView({behavior: 'smooth'})"
               >
-                <i class="fas fa-info-circle mr-3"></i>Conocer Más
+                <i class="fas fa-info-circle mr-2 md:mr-3"></i>Conocer Más
               </button>
             </div>
           </div>
-          <div class="lg:w-1/2 relative">
+          <div class="lg:w-1/2 relative mt-8 lg:mt-0
+          <div class="lg:w-1/2 relative mt-8 lg:mt-0">
             <div class="floating">
               <img
                 src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9dbf338f-0338-4028-b8b5-62e3ae00b8ea.png"
                 alt="Elegant insurance office interior with professional consultants helping clients review insurance policies at modern desks with emerald accent lighting"
-                class="rounded-2xl shadow-2xl professional-card"
+                class="rounded-2xl shadow-2xl professional-card w-full max-w-lg mx-auto"
               />
             </div>
           </div>
@@ -359,36 +617,36 @@
     </section>
 
     <!-- Services Section -->
-    <section id="servicios" class="py-24 bg-emerald-50">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-20 fade-in">
-          <h2 class="text-5xl title-formal text-gray-800 mb-6">
+    <section id="servicios" class="section-padding py-16 md:py-24 bg-emerald-50">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="text-center mb-12 md:mb-20 fade-in">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl title-formal text-gray-800 mb-6">
             Nuestros Servicios Especializados
           </h2>
           <div class="section-divider max-w-md mx-auto"></div>
-          <p class="text-xl text-gray-600 text-formal max-w-3xl mx-auto">
+          <p class="text-lg md:text-xl text-gray-600 text-formal max-w-3xl mx-auto">
             Ofrecemos una amplia gama de servicios de seguros y gestoría,
             diseñados para brindar la máxima protección y tranquilidad a
             nuestros clientes.
           </p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="services-grid">
           <!-- Auto Insurance -->
           <div
-            class="service-card rounded-2xl p-8 card-hover fade-in professional-card"
+            class="service-card rounded-2xl p-6 md:p-8 card-hover fade-in professional-card"
           >
-            <div class="text-center mb-8">
+            <div class="text-center mb-6 md:mb-8">
               <div
-                class="bg-emerald-100 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+                class="bg-emerald-100 w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6"
               >
-                <i class="fas fa-car text-4xl text-emerald-600"></i>
+                <i class="fas fa-car text-3xl md:text-4xl text-emerald-600"></i>
               </div>
-              <h3 class="text-2xl title-formal text-gray-800 mb-4">
+              <h3 class="text-xl md:text-2xl title-formal text-gray-800 mb-4">
                 Seguros Automotor
               </h3>
             </div>
-            <ul class="text-gray-600 space-y-3 mb-8 text-formal">
+            <ul class="text-gray-600 space-y-3 mb-6 md:mb-8 text-formal">
               <li class="flex items-center">
                 <i class="fas fa-shield-alt text-emerald-500 mr-3"></i>
                 Cobertura integral y responsabilidad civil
@@ -407,7 +665,7 @@
               </li>
             </ul>
             <button
-              class="w-full formal-button text-white py-4 rounded-lg transition duration-300 text-formal font-semibold"
+              class="w-full formal-button text-white py-3 md:py-4 rounded-lg transition duration-300 text-formal font-semibold"
               onclick="openWhatsApp('seguro automotor')"
             >
               Consultar Cobertura
@@ -416,19 +674,19 @@
 
           <!-- Life Insurance -->
           <div
-            class="service-card rounded-2xl p-8 card-hover fade-in professional-card"
+            class="service-card rounded-2xl p-6 md:p-8 card-hover fade-in professional-card"
           >
-            <div class="text-center mb-8">
+            <div class="text-center mb-6 md:mb-8">
               <div
-                class="bg-emerald-100 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+                class="bg-emerald-100 w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6"
               >
-                <i class="fas fa-heartbeat text-4xl text-emerald-600"></i>
+                <i class="fas fa-heartbeat text-3xl md:text-4xl text-emerald-600"></i>
               </div>
-              <h3 class="text-2xl title-formal text-gray-800 mb-4">
+              <h3 class="text-xl md:text-2xl title-formal text-gray-800 mb-4">
                 Seguros de Vida y Salud
               </h3>
             </div>
-            <ul class="text-gray-600 space-y-3 mb-8 text-formal">
+            <ul class="text-gray-600 space-y-3 mb-6 md:mb-8 text-formal">
               <li class="flex items-center">
                 <i class="fas fa-family text-emerald-500 mr-3"></i>
                 Protección familiar integral
@@ -447,7 +705,7 @@
               </li>
             </ul>
             <button
-              class="w-full formal-button text-white py-4 rounded-lg transition duration-300 text-formal font-semibold"
+              class="w-full formal-button text-white py-3 md:py-4 rounded-lg transition duration-300 text-formal font-semibold"
               onclick="openWhatsApp('seguro de vida')"
             >
               Explorar Planes
@@ -456,19 +714,19 @@
 
           <!-- Home Insurance -->
           <div
-            class="service-card rounded-2xl p-8 card-hover fade-in professional-card"
+            class="service-card rounded-2xl p-6 md:p-8 card-hover fade-in professional-card"
           >
-            <div class="text-center mb-8">
+            <div class="text-center mb-6 md:mb-8">
               <div
-                class="bg-emerald-100 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+                class="bg-emerald-100 w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6"
               >
-                <i class="fas fa-home text-4xl text-emerald-600"></i>
+                <i class="fas fa-home text-3xl md:text-4xl text-emerald-600"></i>
               </div>
-              <h3 class="text-2xl title-formal text-gray-800 mb-4">
+              <h3 class="text-xl md:text-2xl title-formal text-gray-800 mb-4">
                 Seguros de Hogar
               </h3>
             </div>
-            <ul class="text-gray-600 space-y-3 mb-8 text-formal">
+            <ul class="text-gray-600 space-y-3 mb-6 md:mb-8 text-formal">
               <li class="flex items-center">
                 <i class="fas fa-fire text-emerald-500 mr-3"></i>
                 Protección contra incendios y explosiones
@@ -487,7 +745,7 @@
               </li>
             </ul>
             <button
-              class="w-full formal-button text-white py-4 rounded-lg transition duration-300 text-formal font-semibold"
+              class="w-full formal-button text-white py-3 md:py-4 rounded-lg transition duration-300 text-formal font-semibold"
               onclick="openWhatsApp('seguro de hogar')"
             >
               Proteger mi Hogar
@@ -496,19 +754,19 @@
 
           <!-- Business Insurance -->
           <div
-            class="service-card rounded-2xl p-8 card-hover fade-in professional-card"
+            class="service-card rounded-2xl p-6 md:p-8 card-hover fade-in professional-card"
           >
-            <div class="text-center mb-8">
+            <div class="text-center mb-6 md:mb-8">
               <div
-                class="bg-emerald-100 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+                class="bg-emerald-100 w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6"
               >
-                <i class="fas fa-building text-4xl text-emerald-600"></i>
+                <i class="fas fa-building text-3xl md:text-4xl text-emerald-600"></i>
               </div>
-              <h3 class="text-2xl title-formal text-gray-800 mb-4">
+              <h3 class="text-xl md:text-2xl title-formal text-gray-800 mb-4">
                 Seguros Empresariales
               </h3>
             </div>
-            <ul class="text-gray-600 space-y-3 mb-8 text-formal">
+            <ul class="text-gray-600 space-y-3 mb-6 md:mb-8 text-formal">
               <li class="flex items-center">
                 <i class="fas fa-umbrella text-emerald-500 mr-3"></i>
                 Responsabilidad civil empresarial
@@ -527,7 +785,7 @@
               </li>
             </ul>
             <button
-              class="w-full formal-button text-white py-4 rounded-lg transition duration-300 text-formal font-semibold"
+              class="w-full formal-button text-white py-3 md:py-4 rounded-lg transition duration-300 text-formal font-semibold"
               onclick="openWhatsApp('seguro empresarial')"
             >
               Consulta Empresarial
@@ -536,19 +794,19 @@
 
           <!-- PYME Insurance -->
           <div
-            class="service-card rounded-2xl p-8 card-hover fade-in professional-card"
+            class="service-card rounded-2xl p-6 md:p-8 card-hover fade-in professional-card"
           >
-            <div class="text-center mb-8">
+            <div class="text-center mb-6 md:mb-8">
               <div
-                class="bg-emerald-100 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+                class="bg-emerald-100 w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6"
               >
-                <i class="fas fa-store text-4xl text-emerald-600"></i>
+                <i class="fas fa-store text-3xl md:text-4xl text-emerald-600"></i>
               </div>
-              <h3 class="text-2xl title-formal text-gray-800 mb-4">
+              <h3 class="text-xl md:text-2xl title-formal text-gray-800 mb-4">
                 Seguros PYME
               </h3>
             </div>
-            <ul class="text-gray-600 space-y-3 mb-8 text-formal">
+            <ul class="text-gray-600 space-y-3 mb-6 md:mb-8 text-formal">
               <li class="flex items-center">
                 <i class="fas fa-chart-line text-emerald-500 mr-3"></i>
                 Planes adaptados a pequeñas empresas
@@ -567,7 +825,7 @@
               </li>
             </ul>
             <button
-              class="w-full formal-button text-white py-4 rounded-lg transition duration-300 text-formal font-semibold"
+              class="w-full formal-button text-white py-3 md:py-4 rounded-lg transition duration-300 text-formal font-semibold"
               onclick="openWhatsApp('seguro PYME')"
             >
               Planes PYME
@@ -576,19 +834,19 @@
 
           <!-- Gestoria Services -->
           <div
-            class="service-card rounded-2xl p-8 card-hover fade-in professional-card"
+            class="service-card rounded-2xl p-6 md:p-8 card-hover fade-in professional-card"
           >
-            <div class="text-center mb-8">
+            <div class="text-center mb-6 md:mb-8">
               <div
-                class="bg-emerald-100 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+                class="bg-emerald-100 w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6"
               >
-                <i class="fas fa-file-contract text-4xl text-emerald-600"></i>
+                <i class="fas fa-file-contract text-3xl md:text-4xl text-emerald-600"></i>
               </div>
-              <h3 class="text-2xl title-formal text-gray-800 mb-4">
+              <h3 class="text-xl md:text-2xl title-formal text-gray-800 mb-4">
                 Gestoría Integral
               </h3>
             </div>
-            <ul class="text-gray-600 space-y-3 mb-8 text-formal">
+            <ul class="text-gray-600 space-y-3 mb-6 md:mb-8 text-formal">
               <li class="flex items-center">
                 <i class="fas fa-id-card text-emerald-500 mr-3"></i>
                 Gestión de documentación personal
@@ -607,7 +865,7 @@
               </li>
             </ul>
             <button
-              class="w-full formal-button text-white py-4 rounded-lg transition duration-300 text-formal font-semibold"
+              class="w-full formal-button text-white py-3 md:py-4 rounded-lg transition duration-300 text-formal font-semibold"
               onclick="openWhatsApp('servicios de gestoría')"
             >
               Servicios de Gestoría
@@ -618,75 +876,73 @@
     </section>
 
     <!-- Insurance Companies Section -->
-    <section id="empresas" class="py-24 bg-white">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-20 fade-in">
-          <h2 class="text-5xl title-formal text-gray-800 mb-6">
+    <section id="empresas" class="py-16 md:py-24 bg-white">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="text-center mb-12 md:mb-20 fade-in">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl title-formal text-gray-800 mb-6">
             Aseguradoras de Prestigio
           </h2>
           <div class="section-divider max-w-md mx-auto"></div>
-          <p class="text-xl text-gray-600 text-formal max-w-3xl mx-auto">
+          <p class="text-lg md:text-xl text-gray-600 text-formal max-w-3xl mx-auto">
             Colaboramos con las compañías aseguradoras más sólidas y reconocidas
             del mercado argentino, garantizando la mejor protección para
             nuestros clientes.
           </p>
         </div>
 
-        <div
-          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center"
-        >
+        <div class="logo-grid items-center">
           <div
-            class="logo-container flex justify-center p-6 fade-in professional-card rounded-xl"
+            class="logo-container flex justify-center p-4 md:p-6 fade-in professional-card rounded-xl"
           >
             <img
               src="images/federacion-patronal.png"
               alt="Federacion Patronal Seguros company logo with professional blue and emerald corporate design elements"
-              class="max-h-16 w-auto"
+              class="max-h-12 md:max-h-16 w-auto"
             />
-          </div>
+                    </div>
           <div
-            class="logo-container flex justify-center p-6 fade-in professional-card rounded-xl"
+            class="logo-container flex justify-center p-4 md:p-6 fade-in professional-card rounded-xl"
           >
             <img
               src="images/Logo-Sancor-Seguros-2.png"
               alt="Sancor Seguros company logo with emerald green and white professional branding"
-              class="max-h-16 w-auto"
+              class="max-h-12 md:max-h-16 w-auto"
             />
           </div>
           <div
-            class="logo-container flex justify-center p-6 fade-in professional-card rounded-xl"
+            class="logo-container flex justify-center p-4 md:p-6 fade-in professional-card rounded-xl"
           >
             <img
               src="images/atm-seguros.png"
               alt="ATM Compañia de Seguros logo with elegant emerald letters on white professional background"
-              class="max-h-16 w-auto"
+              class="max-h-12 md:max-h-16 w-auto"
             />
           </div>
           <div
-            class="logo-container flex justify-center p-6 fade-in professional-card rounded-xl"
+            class="logo-container flex justify-center p-4 md:p-6 fade-in professional-card rounded-xl"
           >
             <img
               src="images/parana-seguros.png"
               alt="Parana Seguros logo with sophisticated emerald wavy lines in circular modern design"
-              class="max-h-16 w-auto"
+              class="max-h-12 md:max-h-16 w-auto"
             />
           </div>
           <div
-            class="logo-container flex justify-center p-6 fade-in professional-card rounded-xl"
+            class="logo-container flex justify-center p-4 md:p-6 fade-in professional-card rounded-xl"
           >
             <img
               src="images/seguros-rivadavia-logo.png"
               alt="Seguros Rivadavia logo with emerald and white contemporary professional design"
-              class="max-h-16 w-auto"
+              class="max-h-12 md:max-h-16 w-auto"
             />
           </div>
           <div
-            class="logo-container flex justify-center p-6 fade-in professional-card rounded-xl"
+            class="logo-container flex justify-center p-4 md:p-6 fade-in professional-card rounded-xl"
           >
             <img
               src="images/providencia-logo.png"
               alt="Providencia Seguros logo with emerald geometric V-shaped modern professional design"
-              class="max-h-16 w-auto"
+              class="max-h-12 md:max-h-16 w-auto"
             />
           </div>
         </div>
@@ -694,39 +950,39 @@
     </section>
 
     <!-- About Us Section -->
-    <section id="nosotros" class="py-24 gradient-bg">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-20 fade-in">
-          <h2 class="text-5xl title-formal text-white mb-6">
+    <section id="nosotros" class="py-16 md:py-24 gradient-bg">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="text-center mb-12 md:mb-20 fade-in">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl title-formal text-white mb-6">
             Nuestra Trayectoria
           </h2>
           <div class="section-divider max-w-md mx-auto"></div>
-          <p class="text-xl text-emerald-100 text-formal max-w-3xl mx-auto">
+          <p class="text-lg md:text-xl text-emerald-100 text-formal max-w-3xl mx-auto">
             Con más de dos décadas de experiencia en el sector asegurador, nos
             hemos consolidado como una empresa de confianza que prioriza la
             excelencia en el servicio y la satisfacción del cliente.
           </p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="about-grid">
           <div class="text-center text-white fade-in">
             <div
-              class="bg-white bg-opacity-20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+              class="bg-white bg-opacity-20 w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6"
             >
-              <i class="fas fa-award text-4xl text-emerald-300"></i>
+              <i class="fas fa-award text-3xl md:text-4xl text-emerald-300"></i>
             </div>
-            <h3 class="text-2xl title-formal mb-4">Experiencia Sólida</h3>
+            <h3 class="text-xl md:text-2xl title-formal mb-4">Experiencia Sólida</h3>
             <p class="text-emerald-100 text-formal">
               Más de 20 años especializándose en el sector asegurador argentino
             </p>
           </div>
           <div class="text-center text-white fade-in">
             <div
-              class="bg-white bg-opacity-20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+              class="bg-white bg-opacity-20 w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6"
             >
-              <i class="fas fa-users text-4xl text-emerald-300"></i>
+              <i class="fas fa-users text-3xl md:text-4xl text-emerald-300"></i>
             </div>
-            <h3 class="text-2xl title-formal mb-4">Confianza Mutua</h3>
+            <h3 class="text-xl md:text-2xl title-formal mb-4">Confianza Mutua</h3>
             <p class="text-emerald-100 text-formal">
               Miles de clientes satisfechos avalan nuestra trayectoria
               profesional
@@ -734,22 +990,22 @@
           </div>
           <div class="text-center text-white fade-in">
             <div
-              class="bg-white bg-opacity-20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+              class="bg-white bg-opacity-20 w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6"
             >
-              <i class="fas fa-clock text-4xl text-emerald-300"></i>
+              <i class="fas fa-clock text-3xl md:text-4xl text-emerald-300"></i>
             </div>
-            <h3 class="text-2xl title-formal mb-4">Atención Personalizada</h3>
+            <h3 class="text-xl md:text-2xl title-formal mb-4">Atención Personalizada</h3>
             <p class="text-emerald-100 text-formal">
               Servicio disponible cuando necesites asistencia y asesoramiento
             </p>
           </div>
           <div class="text-center text-white fade-in">
             <div
-              class="bg-white bg-opacity-20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+              class="bg-white bg-opacity-20 w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6"
             >
-              <i class="fas fa-medal text-4xl text-emerald-300"></i>
+              <i class="fas fa-medal text-3xl md:text-4xl text-emerald-300"></i>
             </div>
-            <h3 class="text-2xl title-formal mb-4">Calidad Premium</h3>
+            <h3 class="text-xl md:text-2xl title-formal mb-4">Calidad Premium</h3>
             <p class="text-emerald-100 text-formal">
               Comparamos múltiples opciones para ofrecerte la mejor cobertura
             </p>
@@ -759,79 +1015,79 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contacto" class="py-24 bg-emerald-50">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-20 fade-in">
-          <h2 class="text-5xl title-formal text-gray-800 mb-6">Contáctenos</h2>
+    <section id="contacto" class="py-16 md:py-24 bg-emerald-50">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="text-center mb-12 md:mb-20 fade-in">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl title-formal text-gray-800 mb-6">Contáctenos</h2>
           <div class="section-divider max-w-md mx-auto"></div>
-          <p class="text-xl text-gray-600 text-formal max-w-3xl mx-auto">
+          <p class="text-lg md:text-xl text-gray-600 text-formal max-w-3xl mx-auto">
             Estamos disponibles para brindarle la asesoría especializada que
             necesita. Permítanos ayudarle a encontrar la protección perfecta
             para sus necesidades.
           </p>
         </div>
 
-        <div class="grid lg:grid-cols-2 gap-16 items-start">
+        <div class="contact-grid items-start">
           <div class="fade-in">
-            <div class="professional-card rounded-2xl p-10">
-              <h3 class="text-3xl title-formal mb-8 text-gray-800">
+            <div class="professional-card rounded-2xl p-6 md:p-10">
+              <h3 class="text-2xl md:text-3xl title-formal mb-6 md:mb-8 text-gray-800">
                 Información de Contacto
               </h3>
-              <div class="space-y-6 mb-10">
+              <div class="space-y-6 mb-8 md:mb-10">
                 <div class="flex items-center">
                   <div
-                    class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mr-6"
+                    class="bg-emerald-100 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mr-4 md:mr-6"
                   >
                     <i
-                      class="fas fa-map-marker-alt text-emerald-600 text-xl"
+                      class="fas fa-map-marker-alt text-emerald-600 text-lg md:text-xl"
                     ></i>
                   </div>
                   <div>
-                    <h4 class="title-formal text-lg text-gray-800">
+                    <h4 class="title-formal text-base md:text-lg text-gray-800">
                       Dirección
                     </h4>
-                    <span class="text-formal text-gray-600">Direccion</span>
+                    <span class="text-formal text-gray-600 text-sm md:text-base">Dirección</span>
                   </div>
                 </div>
                 <div class="flex items-center">
                   <div
-                    class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mr-6"
+                    class="bg-emerald-100 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mr-4 md:mr-6"
                   >
-                    <i class="fas fa-phone text-emerald-600 text-xl"></i>
+                    <i class="fas fa-phone text-emerald-600 text-lg md:text-xl"></i>
                   </div>
                   <div>
-                    <h4 class="title-formal text-lg text-gray-800">Teléfono</h4>
-                    <span class="text-formal text-gray-600"
+                    <h4 class="title-formal text-base md:text-lg text-gray-800">Teléfono</h4>
+                    <span class="text-formal text-gray-600 text-sm md:text-base"
                       >+54 11 4172-9575</span
                     >
                   </div>
                 </div>
                 <div class="flex items-center">
                   <div
-                    class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mr-6"
+                    class="bg-emerald-100 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mr-4 md:mr-6"
                   >
-                    <i class="fas fa-envelope text-emerald-600 text-xl"></i>
+                    <i class="fas fa-envelope text-emerald-600 text-lg md:text-xl"></i>
                   </div>
                   <div>
-                    <h4 class="title-formal text-lg text-gray-800">
+                    <h4 class="title-formal text-base md:text-lg text-gray-800">
                       Correo Electrónico
                     </h4>
-                    <span class="text-formal text-gray-600"
+                    <span class="text-formal text-gray-600 text-sm md:text-base"
                       >lauraserrizuelaseguros@yahoo.com.ar</span
                     >
                   </div>
                 </div>
                 <div class="flex items-center">
                   <div
-                    class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mr-6"
+                    class="bg-emerald-100 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mr-4 md:mr-6"
                   >
-                    <i class="fas fa-clock text-emerald-600 text-xl"></i>
+                    <i class="fas fa-clock text-emerald-600 text-lg md:text-xl"></i>
                   </div>
                   <div>
-                    <h4 class="title-formal text-lg text-gray-800">
+                    <h4 class="title-formal text-base md:text-lg text-gray-800">
                       Horarios de Atención
                     </h4>
-                    <span class="text-formal text-gray-600"
+                    <span class="text-formal text-gray-600 text-sm md:text-base"
                       >Lunes a Viernes: 9:00 - 18:00 | Sábados: 9:00 -
                       13:00</span
                     >
@@ -841,74 +1097,74 @@
 
               <div class="flex flex-col gap-4">
                 <button
-                  class="whatsapp-btn px-8 py-4 rounded-lg font-semibold flex items-center justify-center text-formal"
+                  class="whatsapp-btn px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold flex items-center justify-center text-formal"
                   onclick="openWhatsApp('consulta general')"
                 >
-                  <i class="fab fa-whatsapp mr-3 text-xl"></i>
+                  <i class="fab fa-whatsapp mr-3 text-lg md:text-xl"></i>
                   Consultar por WhatsApp
                 </button>
                 <button
-                  class="instagram-btn px-8 py-4 rounded-lg font-semibold flex items-center justify-center text-formal"
+                  class="instagram-btn px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold flex items-center justify-center text-formal"
                   onclick="openInstagram()"
                 >
-                  <i class="fab fa-instagram mr-3 text-xl"></i>
+                  <i class="fab fa-instagram mr-3 text-lg md:text-xl"></i>
                   Seguir en Instagram
                 </button>
               </div>
             </div>
           </div>
 
-          <div class="professional-card rounded-2xl p-10 shadow-xl fade-in">
-            <h3 class="text-3xl title-formal text-gray-800 mb-8">
+          <div class="professional-card rounded-2xl p-6 md:p-10 shadow-xl fade-in">
+            <h3 class="text-2xl md:text-3xl title-formal text-gray-800 mb-6 md:mb-8">
               Solicite su Cotización
             </h3>
-            <form id="contactForm" class="space-y-6">
-              <div class="grid md:grid-cols-2 gap-6">
+            <form id="contactForm" class="space-y-4 md:space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <div>
-                  <label class="block text-formal text-gray-700 mb-2"
+                  <label class="block text-formal text-gray-700 mb-2 text-sm md:text-base"
                     >Nombre Completo</label
                   >
                   <input
                     type="text"
                     id="nombre"
                     placeholder="Ingrese su nombre completo"
-                    class="w-full px-4 py-4 border-2 border-emerald-100 rounded-lg focus:outline-none focus:border-emerald-500 transition duration-300 text-formal"
+                    class="w-full px-3 md:px-4 py-3 md:py-4 border-2 border-emerald-100 rounded-lg focus:outline-none focus:border-emerald-500 transition duration-300 text-formal text-sm md:text-base"
                     required
                   />
                 </div>
                 <div>
-                  <label class="block text-formal text-gray-700 mb-2"
+                  <label class="block text-formal text-gray-700 mb-2 text-sm md:text-base"
                     >Correo Electrónico</label
                   >
                   <input
                     type="email"
                     id="email"
                     placeholder="Ingrese su correo electrónico"
-                    class="w-full px-4 py-4 border-2 border-emerald-100 rounded-lg focus:outline-none focus:border-emerald-500 transition duration-300 text-formal"
+                    class="w-full px-3 md:px-4 py-3 md:py-4 border-2 border-emerald-100 rounded-lg focus:outline-none focus:border-emerald-500 transition duration-300 text-formal text-sm md:text-base"
                     required
                   />
                 </div>
               </div>
               <div>
-                <label class="block text-formal text-gray-700 mb-2"
+                <label class="block text-formal text-gray-700 mb-2 text-sm md:text-base"
                   >Número de Teléfono</label
                 >
                 <input
                   type="tel"
                   id="telefono"
                   placeholder="Ingrese su número de teléfono"
-                  class="w-full px-4 py-4 border-2 border-emerald-100 rounded-lg focus:outline-none focus:border-emerald-500 transition duration-300 text-formal"
+                  class="w-full px-3 md:px-4 py-3 md:py-4 border-2 border-emerald-100 rounded-lg focus:outline-none focus:border-emerald-500 transition duration-300 text-formal text-sm md:text-base"
                   required
                 />
               </div>
               <div>
-                <label class="block text-formal text-gray-700 mb-2"
+                <label class="block text-formal text-gray-700 mb-2 text-sm md:text-base"
                   >Tipo de Servicio</label
                 >
                 <select
                   id="tipoSeguro"
                   title="Tipo de Servicio"
-                  class="w-full px-4 py-4 border-2 border-emerald-100 rounded-lg focus:outline-none focus:border-emerald-500 transition duration-300 text-formal"
+                  class="w-full px-3 md:px-4 py-3 md:py-4 border-2 border-emerald-100 rounded-lg focus:outline-none focus:border-emerald-500 transition duration-300 text-formal text-sm md:text-base"
                   required
                 >
                   <option value="">Seleccione el tipo de servicio</option>
@@ -921,22 +1177,22 @@
                 </select>
               </div>
               <div>
-                <label class="block text-formal text-gray-700 mb-2"
+                                <label class="block text-formal text-gray-700 mb-2 text-sm md:text-base"
                   >Mensaje</label
                 >
                 <textarea
                   id="mensaje"
                   placeholder="Describa sus necesidades específicas..."
-                  rows="5"
-                  class="w-full px-4 py-4 border-2 border-emerald-100 rounded-lg focus:outline-none focus:border-emerald-500 transition duration-300 text-formal"
+                  rows="4"
+                  class="w-full px-3 md:px-4 py-3 md:py-4 border-2 border-emerald-100 rounded-lg focus:outline-none focus:border-emerald-500 transition duration-300 text-formal text-sm md:text-base"
                   required
                 ></textarea>
               </div>
               <button
                 type="submit"
-                class="w-full formal-button text-white py-4 rounded-lg font-semibold transition duration-300 transform hover:scale-105 text-formal"
+                class="w-full formal-button text-white py-3 md:py-4 rounded-lg font-semibold transition duration-300 transform hover:scale-105 text-formal text-sm md:text-base"
               >
-                <i class="fas fa-paper-plane mr-3"></i>
+                <i class="fas fa-paper-plane mr-2 md:mr-3"></i>
                 Enviar Consulta
               </button>
             </form>
@@ -946,18 +1202,18 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-emerald-900 text-white py-16">
-      <div class="container mx-auto px-6">
-        <div class="grid md:grid-cols-4 gap-12">
+    <footer class="bg-emerald-900 text-white py-12 md:py-16">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="footer-grid">
           <div>
             <div class="mb-6">
               <img
                 src="images/ls-logo.jpg"
                 alt="Laura Serrizuela Seguros footer logo with emerald green and white professional design"
-                class="h-12 w-auto mb-4"
+                class="h-10 md:h-12 w-auto mb-4"
               />
             </div>
-            <p class="text-emerald-100 mb-6 text-formal leading-relaxed">
+            <p class="text-emerald-100 mb-6 text-formal leading-relaxed text-sm md:text-base">
               Su tranquilidad es nuestro compromiso. Protegemos lo que más
               valora con los mejores seguros del mercado argentino.
             </p>
@@ -969,119 +1225,109 @@
                 class="text-emerald-300 hover:text-white transition duration-300"
                 aria-label="Instagram"
               >
-                <i class="fab fa-instagram text-2xl"></i>
+                <i class="fab fa-instagram text-xl md:text-2xl"></i>
               </a>
             </div>
           </div>
           <div>
-            <h4 class="text-xl title-formal mb-6">Servicios de Seguros</h4>
-            <ul class="space-y-3 text-emerald-100">
+            <h4 class="text-lg md:text-xl title-formal mb-4 md:mb-6">Servicios de Seguros</h4>
+            <ul class="space-y-2 md:space-y-3 text-emerald-100">
               <li>
                 <a
                   href="#servicios"
-                  class="hover:text-white transition duration-300 text-formal"
+                  class="hover:text-white transition duration-300 text-formal text-sm md:text-base"
                   >Seguros Automotor</a
                 >
               </li>
               <li>
                 <a
                   href="#servicios"
-                  class="hover:text-white transition duration-300 text-formal"
+                  class="hover:text-white transition duration-300 text-formal text-sm md:text-base"
                   >Seguros de Vida y Salud</a
                 >
               </li>
               <li>
                 <a
                   href="#servicios"
-                  class="hover:text-white transition duration-300 text-formal"
+                  class="hover:text-white transition duration-300 text-formal text-sm md:text-base"
                   >Seguros de Hogar</a
                 >
               </li>
               <li>
                 <a
                   href="#servicios"
-                  class="hover:text-white transition duration-300 text-formal"
+                  class="hover:text-white transition duration-300 text-formal text-sm md:text-base"
                   >Seguros Empresariales</a
                 >
               </li>
               <li>
                 <a
                   href="#servicios"
-                  class="hover:text-white transition duration-300 text-formal"
+                  class="hover:text-white transition duration-300 text-formal text-sm md:text-base"
                   >Seguros PYME</a
                 >
               </li>
             </ul>
           </div>
           <div>
-            <h4 class="text-xl title-formal mb-6">Servicios de Gestoría</h4>
-            <ul class="space-y-3 text-emerald-100">
+            <h4 class="text-lg md:text-xl title-formal mb-4 md:mb-6">Servicios de Gestoría</h4>
+            <ul class="space-y-2 md:space-y-3 text-emerald-100">
               <li>
                 <a
                   href="#servicios"
-                  class="hover:text-white transition duration-300 text-formal"
+                  class="hover:text-white transition duration-300 text-formal text-sm md:text-base"
                   >Trámites Vehiculares</a
                 >
               </li>
               <li>
                 <a
                   href="#servicios"
-                  class="hover:text-white transition duration-300 text-formal"
+                  class="hover:text-white transition duration-300 text-formal text-sm md:text-base"
                   >Documentación Personal</a
                 >
               </li>
               <li>
                 <a
                   href="#servicios"
-                  class="hover:text-white transition duration-300 text-formal"
+                  class="hover:text-white transition duration-300 text-formal text-sm md:text-base"
                   >Habilitaciones Comerciales</a
                 >
               </li>
               <li>
                 <a
                   href="#servicios"
-                  class="hover:text-white transition duration-300 text-formal"
+                  class="hover:text-white transition duration-300 text-formal text-sm md:text-base"
                   >Asesoramiento Jurídico</a
                 >
               </li>
             </ul>
           </div>
           <div>
-            <h4 class="text-xl title-formal mb-6">Información de Contacto</h4>
-            <ul class="space-y-3 text-emerald-100">
+            <h4 class="text-lg md:text-xl title-formal mb-4 md:mb-6">Información de Contacto</h4>
+            <ul class="space-y-2 md:space-y-3 text-emerald-100">
               <li class="flex items-center">
-                <i class="fas fa-map-marker-alt mr-3"></i>
-                <span class="text-formal"
-                  >Dirección de Ejemplo 1234, Ciudad</span
-                >
+                <i class="fas fa-map-marker-alt mr-3 text-sm"></i>
+                <span class="text-formal text-sm md:text-base">Dirección de Ejemplo 1234, Ciudad</span>
               </li>
               <li class="flex items-center">
-                <i class="fas fa-phone mr-3"></i>
-                <a
-                  href="tel:+541141729575"
-                  class="text-formal hover:text-white transition duration-300"
-                  >+54 11 41729575</a
-                >
+                <i class="fas fa-phone mr-3 text-sm"></i>
+                <a href="tel:+541141729575" class="text-formal hover:text-white transition duration-300 text-sm md:text-base">+54 11 41729575</a>
               </li>
               <li class="flex items-center">
-                <i class="fas fa-envelope mr-3"></i>
-                <a
-                  href="mailto:lauraserrizuelaseguros@yahoo.com.ar"
-                  class="text-formal hover:text-white transition duration-300"
-                  >lauraserrizuelaseguros@yahoo.com.ar</a
-                >
+                <i class="fas fa-envelope mr-3 text-sm"></i>
+                <a href="mailto:lauraserrizuelaseguros@yahoo.com.ar" class="text-formal hover:text-white transition duration-300 text-sm md:text-base">lauraserrizuelaseguros@yahoo.com.ar</a>
               </li>
               <li class="flex items-center">
-                <i class="fas fa-clock mr-3"></i>
-                <span class="text-formal">Lun-Vie 9-18h | Sáb 9-13h</span>
+                <i class="fas fa-clock mr-3 text-sm"></i>
+                <span class="text-formal text-sm md:text-base">Lun-Vie 9-18h | Sáb 9-13h</span>
               </li>
             </ul>
           </div>
         </div>
         <div
-          class="border-t border-emerald-700 mt-12 pt-8 text-center text-emerald-100"
+          class="border-t border-emerald-700 mt-8 md:mt-12 pt-6 md:pt-8 text-center text-emerald-100"
         >
-          <p class="text-formal">
+          <p class="text-formal text-sm md:text-base">
             © 2025 Laura Serrizuela Seguros. Todos los derechos reservados.
           </p>
         </div>
@@ -1089,30 +1335,50 @@
     </footer>
 
     <!-- Floating Contact Buttons -->
-    <div class="fixed bottom-8 right-8 z-50 space-y-4">
+    <div class="floating-buttons">
       <button
-        class="whatsapp-btn w-16 h-16 rounded-full shadow-2xl flex items-center justify-center floating"
+        class="floating-btn whatsapp-btn"
         onclick="openWhatsApp('consulta rápida')"
         title="Contactar por WhatsApp"
       >
-        <i class="fab fa-whatsapp text-2xl"></i>
+        <i class="fab fa-whatsapp text-xl md:text-2xl"></i>
       </button>
       <button
-        class="instagram-btn w-16 h-16 rounded-full shadow-2xl flex items-center justify-center floating"
+        class="floating-btn instagram-btn"
         onclick="openInstagram()"
         title="Seguir en Instagram"
       >
-        <i class="fab fa-instagram text-2xl"></i>
+        <i class="fab fa-instagram text-xl md:text-2xl"></i>
       </button>
     </div>
 
     <script>
       // Mobile Menu Toggle
-      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const hamburger = document.getElementById("hamburger");
       const mobileMenu = document.getElementById("mobileMenu");
+      const mobileOverlay = document.getElementById("mobileOverlay");
+      const mobileMenuLinks = document.querySelectorAll(".mobile-menu-link");
 
-      mobileMenuBtn.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
+      function toggleMobileMenu() {
+        hamburger.classList.toggle("active");
+        mobileMenu.classList.toggle("active");
+        mobileOverlay.classList.toggle("active");
+        document.body.style.overflow = mobileMenu.classList.contains("active") ? "hidden" : "auto";
+      }
+
+      function closeMobileMenu() {
+        hamburger.classList.remove("active");
+        mobileMenu.classList.remove("active");
+        mobileOverlay.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      hamburger.addEventListener("click", toggleMobileMenu);
+      mobileOverlay.addEventListener("click", closeMobileMenu);
+
+      // Close mobile menu when clicking on links
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener("click", closeMobileMenu);
       });
 
       // Scroll Indicator
@@ -1136,8 +1402,6 @@
               behavior: "smooth",
               block: "start",
             });
-            // Close mobile menu if open
-            mobileMenu.classList.add("hidden");
           }
         });
       });
@@ -1212,7 +1476,7 @@ Agradezco su tiempo y quedo a la espera de su respuesta para coordinar una reuni
 Saludos cordiales.`;
 
           const encodedMessage = encodeURIComponent(whatsappMessage);
-          const phoneNumber = "+5491141729575";
+          const phoneNumber = "5491141729575";
           const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
           window.open(whatsappURL, "_blank");
@@ -1230,13 +1494,13 @@ Saludos cordiales.`;
       window.addEventListener("scroll", () => {
         const scrolled = window.pageYOffset;
         const parallax = document.querySelector(".gradient-bg");
-        // Apply parallax only if the element exists and is within the viewport
         if (parallax && scrolled < window.innerHeight) {
           const speed = scrolled * 0.3;
           parallax.style.transform = `translateY(${speed}px)`;
         }
       });
 
+      // Add professional hover effects to service cards
       document.querySelectorAll(".service-card").forEach((card) => {
         card.addEventListener("mouseenter", function () {
           this.style.transform = "translateY(-8px)";
@@ -1249,6 +1513,7 @@ Saludos cordiales.`;
         });
       });
 
+      // Initialize page with professional loading animation
       window.addEventListener("load", () => {
         document.body.style.opacity = "0";
         document.body.style.transition = "opacity 0.8s ease-in-out";
@@ -1271,6 +1536,13 @@ Saludos cordiales.`;
           navbar.style.transform = "translateY(0)";
         }
         lastScrollTop = scrollTop;
+      });
+
+      // Close mobile menu on window resize
+      window.addEventListener("resize", () => {
+        if (window.innerWidth >= 1024) {
+          closeMobileMenu();
+        }
       });
     </script>
   </body>
